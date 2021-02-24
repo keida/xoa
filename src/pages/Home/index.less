@@ -1,0 +1,100 @@
+.home-wrap {
+  .header {
+    box-sizing: border-box;
+    height: 60px;
+    padding: 0 24px;
+    line-height: 60px;
+    color: azure;
+    box-shadow: 0 3px 6px rgba(252, 250, 250, 0.1);
+    background-color: #000;
+    .log {
+      display: inline-flex;
+      font-size: 20px;
+      align-items: center;
+    }
+    .hd-right-box {
+      float: right;
+      .volume-box {
+        display: inline-block;
+      }
+    }
+  }
+  .task-pane-wrap {
+    display: inline-block;
+    width: calc(100% - 300px);
+    padding: 50px;
+    .todo-card {
+      font-size: 12px;
+      display: inline-block;
+      margin-right: 26px;
+      margin-bottom: 26px;
+      width: 300px;
+      min-height: 250px;
+      vertical-align: top;
+      .todo-desc {
+        p {
+          word-wrap: break-word;
+          font-size: 14px;
+          width: 254px;
+          height: auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+      }
+      .todo-status {
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px dashed #ccc;
+      }
+    }
+    .add-todo-btn {
+      width: 250px;
+      height: 250px;
+      background-color: #fff;
+      border: 1px dashed transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      text-align: center;
+      vertical-align: top;
+      color: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      &:hover {
+        border-color: rgb(90, 169, 248);
+      }
+    }
+  }
+}
+.task-status-list {
+  padding: 50px 20px 0 0;
+  float: right;
+  width: 300px;
+  .status-list-item {
+    height: 36px;
+  }
+}
+.todo-form {
+  width: 90%;
+  margin: 20px auto;
+  .form-control {
+    padding: 0 0 16px;
+    display: flex;
+    .label {
+      display: inline-block;
+      width: 100px;
+      color: #000;
+    }
+    .todo-ipt,
+    .todo-select {
+      flex: 1;
+      width: 100%;
+    }
+    .todo-select {
+      height: 40px;
+    }
+  }
+}
