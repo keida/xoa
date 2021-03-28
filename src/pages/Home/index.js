@@ -291,7 +291,7 @@
 //   };
 // };
 // export default connect(mapStateToProps, mapDispatchToProps)(Home);
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Layout,
   Card,
@@ -306,10 +306,9 @@ import {
   Empty,
   Progress,
   Badge,
-  Form,
 } from 'antd';
 import { connect } from 'react-redux';
-import { createDo, deleteDo, editDo, completeDo } from '../../store/actions';
+import { createDo, deleteDo, editDo, completeDo, checkDo } from '../../store/actions';
 import { FieldTimeOutlined, PlusSquareFilled, DownOutlined } from '@ant-design/icons';
 import './index.less';
 
@@ -325,6 +324,25 @@ const Home = props => {
   const data = {
     typeText: ['Daily', 'Weekly', 'Monthly', 'Quarterly'],
   };
+
+  useEffect(() => {
+    setInterval(() => {
+      remindDos.forEach((item, i) => {
+        let now = new Date(),
+          month = now.getMonth() + 1,
+          date = now.getDate(),
+          nowStr =
+            now.getFullYear() +
+            '-' +
+            (month < 10 ? '0' + month : month) +
+            '-' +
+            (date < 10 ? '0' + date : date);
+        if (+new Date(item.finishDate) < +new Date(nowStr)) {
+          props.checkDo(i);
+        }
+      });
+    }, 10000);
+  });
   const delay = (time, data) => {
     message.info(data, time);
   };
@@ -391,7 +409,8 @@ const Home = props => {
   const hasComplete = completeDos.length,
     hasFail = failDos.length,
     totalComplete = hasComplete + hasFail,
-    efficiency = totalComplete ? (hasComplete / totalComplete) * 100 : 0;
+    efficiency = (totalComplete ? (hasComplete / totalComplete) * 100 : 0).toFixed();
+
   return (
     <div className="home-wrap">
       <Layout>
@@ -573,6 +592,9 @@ const mapDispatchToProps = dispatch => {
     },
     completeDo(data, cb) {
       dispatch(completeDo(data, cb));
+    },
+    checkDo(data, cb) {
+      dispatch(checkDo(data, cb));
     },
   };
 };

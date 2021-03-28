@@ -3,6 +3,7 @@ import deleteReducer from './deleteReducer';
 import editReducer from './editReducer';
 import completeReducer from './completeReducer';
 import reduceReducers from 'reduce-reducers';
+import checkReducer from './checkReducer';
 
 const initialState = {
   completeDos: [],
@@ -18,6 +19,7 @@ const reducer = reduceReducers(
   (state = initialState, action) => editReducer(state, action),
   (state = initialState, action) => deleteReducer(state, action),
   (state = initialState, action) => completeReducer(state, action),
+  (state = initialState, action) => checkReducer(state, action),
 );
 
 export default reducer;

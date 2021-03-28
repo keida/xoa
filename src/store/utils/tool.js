@@ -1,4 +1,3 @@
-import sizeof from 'object-sizeof';
 //mock promise request
 
 export function mock() {
@@ -9,6 +8,4 @@ export function mock() {
   });
 }
 
-export function calculatedSize(data) {
-  return sizeof(data);
-}
+
